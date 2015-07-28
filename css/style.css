@@ -1,0 +1,38 @@
+body { text-align:left; font-family:'Cousine', courier new,sans-serif; background-color:#f6f6f6; }
+h1 { position:relative; width:55px; height:18px; margin:0 0 40px 80px; }
+	h1 a { position:absolute; top:0px; left:0px; width:100%; height:100%; border:none; background-image:url(../img/chips_sm.png); background-repeat:no-repeat; text-indent:-6000px; }
+a { color:#252525; text-decoration: none;  border-bottom: 1px solid #bdbdbd;}
+	a:HOVER { color:#252525; text-decoration: none;  border-bottom: 1px solid #666; }
+
+.no-choice { position:relative; z-index:10; padding:20px 0; }
+	.no-choice ul { margin-left:80px; padding:0px; list-style:none; }
+	.no-choice ul li { margin-bottom: 20px; }
+	.no-choice h2 { margin:0px 0 30px; font-weight:normal; font-size:16px; }
+
+
+body { padding:0; margin:0; background-color:#fff; }
+	ul { list-style:none; padding:0; margin:0; }
+	.presentation-wrap { position:relative; margin:auto; width:75%; max-width:1500px; }
+	.presentation-images { position:relative;}
+	.presentation-images li { display:none;overflow:hidden;  }
+	.presentation-images li.active { display:block; }
+	.presentation-images li img { width:100%; height:auto; display:block; margin:auto; max-width: 1000px; }
+	.image-nav {position:absolute;top:0;left:0;width:5%;height:100%; opacity:0;cursor:pointer;}
+	.next-img {left:auto;right:0;}
+	.scroller {overflow:visible;position:auto;}
+	.header {
+		position:fixed;
+		height:0 !important;
+		padding-bottom:6.5%;
+	}
+
+	@media (min-width:736px){
+		.iphone .presentation-wrap { width:425px; height:675px; margin:49px auto 0; padding:96px 0; background-image:url(assets/iphone_6_illustration_grey.png); background-repeat:no-repeat;}
+		.iphone .presentation-wrap ul { width:377px; height:676px; margin:auto;}
+		.iphone .presentation-wrap ul li { position:absolute;top:0;left:0;width:100%;height:100%;overflow:auto;}
+		.iphone .scroller {overflow:auto;position:absolute;}
+		.iphone .header {
+			position:relative;
+			-webkit-backface-visibility:hidden;
+		}
+	}
