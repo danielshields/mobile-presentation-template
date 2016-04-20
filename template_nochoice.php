@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div class="no-choice">
-		<h1><a href="http://www.chips-ny.com">CHIPS</a></h1>
+		<h1><a href="//chips.nyc">CHIPS</a></h1>
 		<?php
 			$dirs = array_filter(glob('*'), 'is_dir');
 			print '<ul id="dirlist">';

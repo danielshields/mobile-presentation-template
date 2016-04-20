@@ -1,11 +1,14 @@
 <?php 
 	$numLevels = substr_count(trim($assetPath,'/'),'/') + 1;
-	$pathToWebroot = "";
+	$pathToWebroot = "../projectname";
 	for ($x = 1; $x <= $numLevels; $x++) {
 		$pathToWebroot.="../";
 	}
 	$displayPath = str_replace("iphone/","",$assetPath);
-	$directory = ltrim($displayPath,"/");
+	$directory = "../" . ltrim($displayPath,"/");
+
+	$specDir = str_replace("/","",str_replace("/projectname/","",$assetPath));
+
 	$images = glob($directory . "*.jpg");
 
 	// foreach($images as $image){
@@ -23,7 +26,7 @@
 	<script src="<?php print $pathToWebroot; ?>bower_components/modernizr/modernizr.js"></script>
 </head>
 
-<body class="proto <?php print $displayType; ?>">
+<body class="proto <?php print $displayType; ?> proj-<?php print $specDir; ?>">
 
 <div keypress ng-swipe-left="presentationCtrl.navImg('next')" ng-swipe-right="presentationCtrl.navImg('prev')"  ng-controller="presentationController as presentationCtrl" ng-init="init(<?php print count($images); ?>)">
 	<div  class="presentation-wrap">
@@ -32,7 +35,7 @@
 				$trackImg = 1;
 				foreach($images as $image){
 			?>
-			<li test-header="0" img-src="<?php print $pathToWebroot . $image ?>" ng-class="{'active' : activeSlide === <?php print $trackImg; ?>}"></li>
+			<li class="presentation-item-<?php print $trackImg; ?>" test-header="0" img-src="<?php print $pathToWebroot . $image ?>" ng-class="{'active' : activeSlide === <?php print $trackImg; ?>}"></li>
 			<?php 
 				$trackImg = $trackImg + 1;
 				}

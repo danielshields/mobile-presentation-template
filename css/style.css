@@ -1,6 +1,49 @@
-body { text-align:left; font-family:'Cousine', courier new,sans-serif; background-color:#f6f6f6; }
-h1 { position:relative; width:55px; height:18px; margin:0 0 40px 80px; }
-	h1 a { position:absolute; top:0px; left:0px; width:100%; height:100%; border:none; background-image:url(../img/chips_sm.png); background-repeat:no-repeat; text-indent:-6000px; }
+@font-face {
+	font-family:'BauTF-Regular';
+	src: url('webfont/BauTF-Regular.eot'); /* IE9 Compat Modes */
+	src: url('webfont/BauTF-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		url('webfont/BauTF-Regular.woff') format('woff'), /* Modern Browsers */
+		url('webfont/BauTF-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+		url('webfont/BauTF-Regular.svg#196440deb6ec563a68a0e5ef6f1d9439') format('svg'); /* Legacy iOS */
+	font-style: normal;
+	font-weight: 400;
+}
+
+@mixin bau {
+	font-family: 'BauTF-Regular', Helvetica, Arial, sans-serif;
+	font-style: normal;
+	font-weight: 400;
+}
+
+h1,h2,h3,h4,h5,h6,b,strong {
+	font-weight:normal;
+}
+
+@font-face {
+	font-family: 'CourierSans';
+	src: url('webfont/CourierSans-Light.eot'); /* IE9 Compat Modes */
+	src: url('webfont/CourierSans-Light.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		url('webfont/CourierSans-Light.woff') format('woff'), /* Modern Browsers */
+		url('webfont/CourierSans-Light.ttf')  format('truetype'), /* Safari, Android, iOS */
+		url('webfont/CourierSans-Light.svg#0dde3885dfd146f909ad9133af3c5bc6') format('svg'); /* Legacy iOS */
+	font-style: normal;
+	font-weight: 200;
+}
+
+@mixin courier {
+	font-family: 'CourierSans', 'Courier New', Courier, monospace;
+	font-style: normal;
+	font-weight: 200;
+}
+
+.smallcap {
+	font-size:80%;
+	text-transform:uppercase;
+}
+
+body { text-align:left; font-family: 'CourierSans', 'Courier New', Courier, monospace;font-style: normal;font-weight: 200; background-color:#f6f6f6; }
+h1 { margin:0 0 40px 80px; }
+	h1 a { border:none; }
 a { color:#252525; text-decoration: none;  border-bottom: 1px solid #bdbdbd;}
 	a:HOVER { color:#252525; text-decoration: none;  border-bottom: 1px solid #666; }
 
@@ -12,22 +55,26 @@ a { color:#252525; text-decoration: none;  border-bottom: 1px solid #bdbdbd;}
 
 body { padding:0; margin:0; background-color:#fff; }
 	ul { list-style:none; padding:0; margin:0; }
-	.presentation-wrap { position:relative; margin:auto; width:75%; max-width:1500px; }
+	.presentation-wrap { position:relative; margin:auto; width:100%; max-width:1024px; }
 	.presentation-images { position:relative;}
 	.presentation-images li { display:none;overflow:hidden;  }
 	.presentation-images li.active { display:block; }
-	.presentation-images li img { width:100%; height:auto; display:block; margin:auto; max-width: 1000px; }
+	.presentation-images li img { width:100%; height:auto; display:block; margin:auto; max-width: 100%; }
 	.image-nav {position:absolute;top:0;left:0;width:5%;height:100%; opacity:0;cursor:pointer;}
 	.next-img {left:auto;right:0;}
 	.scroller {overflow:visible;position:auto;}
 	.header {
 		position:fixed;
 		height:0 !important;
-		padding-bottom:6.5%;
+		padding-bottom:20%;
+		display:none;
+	}
+	.iphone .header {
+		display:block;
 	}
 
 	@media (min-width:736px){
-		.iphone .presentation-wrap { width:425px; height:675px; margin:49px auto 0; padding:96px 0; background-image:url(assets/iphone_6_illustration_grey.png); background-repeat:no-repeat;}
+		.iphone .presentation-wrap { width:425px; height:675px; margin:49px auto 0; padding:96px 0; background-image:url(../assets/iphone_6_illustration_grey.png); background-repeat:no-repeat;}
 		.iphone .presentation-wrap ul { width:377px; height:676px; margin:auto;}
 		.iphone .presentation-wrap ul li { position:absolute;top:0;left:0;width:100%;height:100%;overflow:auto;}
 		.iphone .scroller {overflow:auto;position:absolute;}
@@ -36,3 +83,8 @@ body { padding:0; margin:0; background-color:#fff; }
 			-webkit-backface-visibility:hidden;
 		}
 	}
+
+
+
+.proj-20160420_mobile .presentation-item-1 .header { display:none; }
+.proj-20160420_wider .presentation-wrap { max-width:1300px; }
