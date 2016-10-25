@@ -25,6 +25,7 @@
 		}
 		include("template_proto.php");
 	} else {
+		include("toc.php");
 		include("template_nochoice.php");
 	}
 ?>
