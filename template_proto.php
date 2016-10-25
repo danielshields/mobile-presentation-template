@@ -27,7 +27,7 @@
 	</style>
 </head>
 
-<body class="proto <?php print $displayType; ?> proj-<?php print $specDir; ?>" style="background-color:<?php echo $globalSettings->bgColor; ?>">
+<body class="proto <?php print $displayType; ?>" style="background-color:<?php echo $globalSettings->bgColor; ?>">
 
 <div keypress ng-swipe-left="presentationCtrl.navImg('next')" ng-swipe-right="presentationCtrl.navImg('prev')"  ng-controller="presentationController as presentationCtrl" ng-init="init(<?php print count($images); ?>)">
 	<div  class="presentation-wrap">
@@ -113,7 +113,7 @@ App.directive('keypress', ['$document',  function ($document) {
 					scope.$eval("presentationCtrl.navImg('prev')");
 				});
 				event.preventDefault();
-			} else if(event.which === 27){
+			} else if(event.which === 27 || event.which === 38){
 				window.location = "../";
 			} else {
 
