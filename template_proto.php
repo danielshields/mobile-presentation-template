@@ -34,7 +34,7 @@
 	</style>
 </head>
 
-<body class="proto <?php print $displayType; ?>" style="background-color:<?php echo $globalSettings->bgColor; ?>">
+<body class="proto <?php print $displayType; print $extraClass; ?>" style="background-color:<?php echo $globalSettings->bgColor; ?>">
 
 <div keypress ng-swipe-left="presentationCtrl.navImg('next')" ng-swipe-right="presentationCtrl.navImg('prev')"  ng-controller="presentationController as presentationCtrl" ng-init="init(<?php print count($images); ?>)">
 	<div  class="presentation-wrap">
