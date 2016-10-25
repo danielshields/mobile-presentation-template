@@ -133,7 +133,14 @@ body { padding:0; margin:0; background-color:#fff; }
 		}
 	}
 
-
+.annotations {
+	position:fixed;bottom:0px;left:0px;
+	z-index:20;
+}
+.annotations.none-available { display:none; }
+.annotate-helper { position:absolute;bottom:20px;left:20px; background:white;border:solid 2px black;border-radius:50%; display:block;width:20px;height:20px;text-align:center;line-height:20px;cursor:pointer; }
+.annotation { position:absolute;bottom:20px;left:45px;background:white;padding:3px;border:solid 2px black;min-width:300px; display:none; }
+.annotations-on .annotation.active { display:block; }
 
 .proj-20160420_mobile .presentation-item-1 .header { display:none; }
 .proj-20160420_wider .presentation-wrap { max-width:1300px; }
