@@ -32,6 +32,13 @@
 		.presentation-wrap { max-width:<?php print $globalSettings->maxWidth; ?>; }
 		body { background-color:<?php print $globalSettings->bgColor; ?>; }
 	</style>
+	<?php 
+		$settingsFile = $pathToAssets.'/settings.php';
+
+		if (file_exists($settingsFile)) {
+			include($settingsFile);
+		}
+	?>
 </head>
 
 <body class="proto <?php print $displayType; print $extraClass; ?>" style="background-color:<?php echo $globalSettings->bgColor; ?>">
@@ -72,6 +79,11 @@ App.controller('presentationController',['$scope','$location',function($scope, $
 	}
 	$scope.init = function(numItems){
 		$scope.totalSlides = numItems;
+		if($(".annotation-"+$scope.activeSlide).hasClass("annotation")){
+			$(".annotations").removeClass("none-available");
+		} else {
+			$(".annotations").addClass("none-available");
+		}
 	};
 
 	this.navImg = function(direction){
@@ -87,7 +99,31 @@ App.controller('presentationController',['$scope','$location',function($scope, $
 			$scope.activeSlide = $scope.totalSlides;
 		}
 		$location.path($scope.activeSlide);
-		document.body.scrollTop = document.documentElement.scrollTop = 0;
+		if(typeof(scrollPoints) !== "undefined"){
+			if(typeof(scrollPoints[$scope.activeSlide]) !== "undefined"){
+				setTimeout(function(){
+					$('html,body').scrollTop(scrollPoints[$scope.activeSlide]);
+				},1);
+			} else {
+				document.body.scrollTop = document.documentElement.scrollTop = 0;
+			}
+		} else {
+			document.body.scrollTop = document.documentElement.scrollTop = 0;
+		}
+
+		$(".annotation").removeClass("active");
+		if(typeof(annotations) !== "undefined"){
+			if(typeof(annotations[$scope.activeSlide]) !== "undefined"){
+				setTimeout(function(){
+					$(".annotation-"+$scope.activeSlide).addClass("active");
+				},1);
+			}
+		}
+		if($(".annotation-"+$scope.activeSlide).hasClass("annotation")){
+			$(".annotations").removeClass("none-available");
+		} else {
+			$(".annotations").addClass("none-available");
+		}
 	};
 }]);
 
@@ -132,6 +168,19 @@ App.directive('keypress', ['$document',  function ($document) {
 if($("body").hasClass("outdated")){
 	$("body").append("<div style=\"position:fixed;top:0;left:0;width:100%;text-align:center;background-color:rgb(192, 53, 56);color:#fff;font-size:14px;line-height:150%;font-family:Helvetica,sans-serif;padding:5px 0;\">There is an updated version of this presentation. <a href=\"<?php print $globalSettings->projectDirectory; ?>\" style=\"color:#fff;\">See all versions</a>.</div>");
 }
+
+if(typeof(annotations) !== "undefined"){
+	$("body").append('<div class="annotations"><span class="annotate-helper">i</span></div>');
+	for (var key in annotations) {
+		if (annotations.hasOwnProperty(key)) {
+			$(".annotations").append('<div class="annotation annotation-' + key+'">' + annotations[key] + '</div>');
+		}
+	}
+}
+
+$(".annotate-helper").on("click",function(){
+	$(".annotations").toggleClass("annotations-on");
+});
 
 </script>
 
