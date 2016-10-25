@@ -95,7 +95,7 @@ App.controller('presentationController',['$scope','$location',function($scope, $
 	};
 
 	this.hideInstructions = function() {
-		$('.instructions-wrap').hide();
+		$(".instructions-wrap").removeClass("showInstructions");
 	};
 
 	this.navImg = function(direction){
@@ -158,7 +158,7 @@ App.directive('testHeader', function() {
 App.directive('keypress', ['$document',  function ($document) {
 	return  function (scope, element, attrs) {
 		$document.bind("keydown keypress", function (event) {
-			$(".instructions-wrap").hide();
+			$(".instructions-wrap").removeClass("showInstructions");
 
 			if(event.which === 39) {
 				scope.$apply(function (){
