@@ -15,7 +15,8 @@
 		'projectToRoot' => '../../',
 		'filetype' => 'png',
 		'maxWidth' => '100%',
-		'autoTOC' => true
+		'autoTOC' => false,
+		'outdated' => array()
 	];
 
 	if(isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] !== $globalSettings->projectDirectory){

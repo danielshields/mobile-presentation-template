@@ -10,8 +10,15 @@
 		return end($pathTokens); // get the last segment
 	}
 
-	$pathToAssets = $globalSettings->assetPath . getLastPathSegment($_SERVER['REQUEST_URI']);
+	$currentDirectory = getLastPathSegment($_SERVER['REQUEST_URI']);
+
+	$pathToAssets = $globalSettings->assetPath . $currentDirectory;
 	$images = glob($pathToAssets . "/*.".$globalSettings->filetype);
+
+	$extraClass = "";
+	if (in_array($currentDirectory, $globalSettings->outdated)) {
+		$extraClass .= " outdated";
+	}
 ?>
 <!DOCTYPE html>
 <html ng-app="App">
@@ -26,7 +33,7 @@
 	</style>
 </head>
 
-<body class="proto <?php print $displayType; ?> proj-<?php print $specDir; ?>">
+<body class="proto <?php print $displayType; print $extraClass; ?> proj-<?php print $specDir; ?>">
 
 <div keypress ng-swipe-left="presentationCtrl.navImg('next')" ng-swipe-right="presentationCtrl.navImg('prev')"  ng-controller="presentationController as presentationCtrl" ng-init="init(<?php print count($images); ?>)">
 	<div  class="presentation-wrap">
@@ -122,7 +129,7 @@ App.directive('keypress', ['$document',  function ($document) {
 }]);
 
 if($("body").hasClass("outdated")){
-	$("body").append("<div style=\"position:fixed;top:0;left:0;width:100%;text-align:center;background-color:rgb(192, 53, 56);color:#fff;font-size:14px;line-height:150%;font-family:Helvetica,sans-serif;padding:5px 0;\">There is an updated version of this presentation. <a href=\"<?php print $pathToWebroot; ?>\" style=\"color:#fff;\">See all versions</a>.</div>");
+	$("body").append("<div style=\"position:fixed;top:0;left:0;width:100%;text-align:center;background-color:rgb(192, 53, 56);color:#fff;font-size:14px;line-height:150%;font-family:Helvetica,sans-serif;padding:5px 0;\">There is an updated version of this presentation. <a href=\"<?php print $globalSettings->projectDirectory; ?>\" style=\"color:#fff;\">See all versions</a>.</div>");
 }
 
 </script>
