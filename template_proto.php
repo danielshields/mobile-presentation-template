@@ -1,19 +1,17 @@
-<?php 
-	$numLevels = substr_count(trim($assetPath,'/'),'/') + 1;
-	$pathToWebroot = "../projectname";
-	for ($x = 1; $x <= $numLevels; $x++) {
-		$pathToWebroot.="../";
+<?php global $globalSettings;
+	function getLastPathSegment($url) {
+		$path = parse_url($url, PHP_URL_PATH); // to get the path from a whole URL
+		$pathTrimmed = trim($path, '/'); // normalise with no leading or trailing slash
+		$pathTokens = explode('/', $pathTrimmed); // get segments delimited by a slash
+
+		if (substr($path, -1) !== '/') {
+			array_pop($pathTokens);
+		}
+		return end($pathTokens); // get the last segment
 	}
-	$displayPath = str_replace("iphone/","",$assetPath);
-	$directory = "../" . ltrim($displayPath,"/");
 
-	$specDir = str_replace("/","",str_replace("/projectname/","",$assetPath));
-
-	$images = glob($directory . "*.jpg");
-
-	// foreach($images as $image){
-	// 	echo $image;
-	// }
+	$pathToAssets = $globalSettings->assetPath . getLastPathSegment($_SERVER['REQUEST_URI']);
+	$images = glob($pathToAssets . "/*.".$globalSettings->filetype);
 ?>
 <!DOCTYPE html>
 <html ng-app="App">
@@ -22,8 +20,7 @@
 	<title><?php print $projTitle; ?></title>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<meta name="fragment" content="!">
-	<link rel="stylesheet" href="<?php print $pathToWebroot; ?>css/style.css">
-	<script src="<?php print $pathToWebroot; ?>bower_components/modernizr/modernizr.js"></script>
+	<link rel="stylesheet" href="<?php print $globalSettings->projectToRoot; ?>css/style.css">
 </head>
 
 <body class="proto <?php print $displayType; ?> proj-<?php print $specDir; ?>">
@@ -35,7 +32,7 @@
 				$trackImg = 1;
 				foreach($images as $image){
 			?>
-			<li class="presentation-item-<?php print $trackImg; ?>" test-header="0" img-src="<?php print $pathToWebroot . $image ?>" ng-class="{'active' : activeSlide === <?php print $trackImg; ?>}"></li>
+			<li class="presentation-item-<?php print $trackImg; ?>" test-header="0" img-src="<?php print $globalSettings->projectToRoot . $image ?>" ng-class="{'active' : activeSlide === <?php print $trackImg; ?>}"></li>
 			<?php 
 				$trackImg = $trackImg + 1;
 				}
@@ -46,9 +43,10 @@
 	</div>
 </div>
 
-<script type="text/javascript" src="<?php print $pathToWebroot; ?>bower_components/angularjs/angular.js"></script>
-<script type="text/javascript" src="<?php print $pathToWebroot; ?>bower_components/angular-touch/angular-touch.min.js"></script>
-<script type="text/javascript" src="<?php print $pathToWebroot; ?>bower_components/jquery/dist/jquery.min.js"></script>
+<script src="<?php print $globalSettings->projectToRoot; ?>js/modernizr-custom.js"></script>
+<script src="<?php print $globalSettings->projectToRoot; ?>js/angular.min.js"></script>
+<script src="<?php print $globalSettings->projectToRoot; ?>js/angular-touch.min.js"></script>
+<script src="<?php print $globalSettings->projectToRoot; ?>js/jquery-3.1.1.min.js"></script>
 <div ng-view></div>
 
 <script>
