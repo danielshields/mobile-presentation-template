@@ -72,6 +72,11 @@ body { padding:0; margin:0; background-color:#fff; }
 	.iphone .header {
 		display:block;
 	}
+	@keyframes fadeOn {
+	    0%   {opacity: 0;}
+	    99%  {opacity: 0;}
+	    100% {opacity: 1;}
+	}
 	.instructions-wrap {
 		opacity:0;
 		position:fixed;
@@ -105,13 +110,14 @@ body { padding:0; margin:0; background-color:#fff; }
 		transition-duration:         0.3s;
 	}
 	.instructions-wrap.showInstructions {
-		opacity: 1;
+		
+		animation-name: fadeOn;
+	    animation-duration: 1s;
+	    opacity: 1;
 	}
 	.instructions-wrap .instructions {
-		/*background-color:white;*/
 		background-color:black;
 		color:white;
-		/*border:2px solid white;*/
 		text-align: center;
 		font-size:18px;
 	}
