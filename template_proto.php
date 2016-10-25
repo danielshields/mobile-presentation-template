@@ -26,7 +26,7 @@
 	</style>
 </head>
 
-<body class="proto <?php print $displayType; ?> proj-<?php print $specDir; ?>">
+<body class="proto <?php print $displayType; ?> proj-<?php print $specDir; ?>" style="background-color:<?php echo $globalSettings->bgColor; ?>">
 
 <div keypress ng-swipe-left="presentationCtrl.navImg('next')" ng-swipe-right="presentationCtrl.navImg('prev')"  ng-controller="presentationController as presentationCtrl" ng-init="init(<?php print count($images); ?>)">
 	<div  class="presentation-wrap">
