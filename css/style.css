@@ -55,7 +55,7 @@ a { color:#252525; text-decoration: none;  border-bottom: 1px solid #bdbdbd;}
 
 body { padding:0; margin:0; background-color:#fff; }
 	ul { list-style:none; padding:0; margin:0; }
-	.presentation-wrap { position:relative; margin:auto; width:100%; max-width:1024px; }
+	.presentation-wrap { position:relative; margin:auto; width:100%; }
 	.presentation-images { position:relative;}
 	.presentation-images li { display:none;overflow:hidden;  }
 	.presentation-images li.active { display:block; }

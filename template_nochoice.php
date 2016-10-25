@@ -12,12 +12,16 @@
 	<div class="no-choice">
 		<h1><a href="//chips.nyc">CHIPS</a></h1>
 		<?php
-			$dirs = array_filter(glob($globalSettings->assetPath . '*'), 'is_dir');
 			print '<ul id="dirlist">';
-			foreach($dirs as $dir){ if(!in_array($dir,$globalSettings->ignore)){
-				$displayDir = str_replace($globalSettings->assetPath,"",$dir);
-				print '<li><a href="' . $displayDir . '">' . $displayDir . '</a></li>';
-			}}
+			if($globalSettings->autoTOC === true){
+				$dirs = array_filter(glob($globalSettings->assetPath . '*'), 'is_dir');
+				foreach($dirs as $dir){ if(!in_array($dir,$globalSettings->ignore)){
+					$displayDir = str_replace($globalSettings->assetPath,"",$dir);
+					print '<li><a href="' . $displayDir . '/">' . $displayDir . '</a></li>';
+				}}
+			} else {
+				
+			}
 			print '</ul>';
 		?>
 	</div>

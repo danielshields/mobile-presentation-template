@@ -5,7 +5,6 @@
 		'projectDirectory' => '/art21design/',
 		'displayType' => 'desktop',
 		'ignore' => array(
-			'bower_components',
 			'css',
 			'img',
 			'assets',
@@ -14,7 +13,9 @@
 		'assetPath' => './assets/',
 		'resourcePath' => '../',
 		'projectToRoot' => '../../',
-		'filetype' => 'png'
+		'filetype' => 'png',
+		'maxWidth' => '100%',
+		'autoTOC' => true
 	];
 
 	if(isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] !== $globalSettings->projectDirectory){

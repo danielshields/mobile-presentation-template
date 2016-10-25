@@ -21,6 +21,9 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<meta name="fragment" content="!">
 	<link rel="stylesheet" href="<?php print $globalSettings->projectToRoot; ?>css/style.css">
+	<style>
+		.presentation-wrap { max-width:<?php print $globalSettings->maxWidth; ?>; }
+	</style>
 </head>
 
 <body class="proto <?php print $displayType; ?> proj-<?php print $specDir; ?>">
