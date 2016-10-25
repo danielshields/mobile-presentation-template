@@ -36,7 +36,15 @@
 
 <body class="proto <?php print $displayType; print $extraClass; ?>" style="background-color:<?php echo $globalSettings->bgColor; ?>">
 
-<div keypress ng-swipe-left="presentationCtrl.navImg('next')" ng-swipe-right="presentationCtrl.navImg('prev')"  ng-controller="presentationController as presentationCtrl" ng-init="init(<?php print count($images); ?>)">
+<div keypress ng-click="presentationCtrl.hideInstructions();" ng-swipe-left="presentationCtrl.navImg('next')" ng-swipe-right="presentationCtrl.navImg('prev')"  ng-controller="presentationController as presentationCtrl" ng-init="init(<?php print count($images); ?>)">
+	<div class="instructions-wrap <?php if ($globalSettings->showInstructions) print 'showInstructions'; ?>">
+		<div class="instructions">
+			<div class="inner">
+				<p>Use the <u>arrow keys</u>, or click on the <u>left and right edges of the slide</u> to cycle through the presentation.</p>
+				<p>Use the <u>esc key</u> to return to the table of contents.</p>
+			</div>
+		</div>
+	</div>
 	<div  class="presentation-wrap">
 		<ul class="presentation-images">
 			<?php
@@ -72,6 +80,10 @@ App.controller('presentationController',['$scope','$location',function($scope, $
 	}
 	$scope.init = function(numItems){
 		$scope.totalSlides = numItems;
+	};
+
+	this.hideInstructions = function() {
+		$('.instructions-wrap').hide();
 	};
 
 	this.navImg = function(direction){
@@ -110,6 +122,8 @@ App.directive('testHeader', function() {
 App.directive('keypress', ['$document',  function ($document) {
 	return  function (scope, element, attrs) {
 		$document.bind("keydown keypress", function (event) {
+			$(".instructions-wrap").hide();
+
 			if(event.which === 39) {
 				scope.$apply(function (){
 					scope.$eval("presentationCtrl.navImg('next')");
@@ -128,6 +142,12 @@ App.directive('keypress', ['$document',  function ($document) {
 		});
 	};
 }]);
+
+if ($(".instructions-wrap").hasClass("showInstructions")) {
+	setTimeout(function() {
+		$(".instructions-wrap").removeClass("showInstructions");
+	}, 5000);
+}
 
 if($("body").hasClass("outdated")){
 	$("body").append("<div style=\"position:fixed;top:0;left:0;width:100%;text-align:center;background-color:rgb(192, 53, 56);color:#fff;font-size:14px;line-height:150%;font-family:Helvetica,sans-serif;padding:5px 0;\">There is an updated version of this presentation. <a href=\"<?php print $globalSettings->projectDirectory; ?>\" style=\"color:#fff;\">See all versions</a>.</div>");
