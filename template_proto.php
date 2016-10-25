@@ -23,6 +23,7 @@
 	<link rel="stylesheet" href="<?php print $globalSettings->projectToRoot; ?>css/style.css">
 	<style>
 		.presentation-wrap { max-width:<?php print $globalSettings->maxWidth; ?>; }
+		body { background-color:<?php print $globalSettings->bgColor; ?>; }
 	</style>
 </head>
 
