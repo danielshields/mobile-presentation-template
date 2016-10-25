@@ -23,6 +23,7 @@
 	<link rel="stylesheet" href="<?php print $globalSettings->projectToRoot; ?>css/style.css">
 	<style>
 		.presentation-wrap { max-width:<?php print $globalSettings->maxWidth; ?>; }
+		body { background-color:<?php print $globalSettings->bgColor; ?>; }
 	</style>
 </head>
 
@@ -101,24 +102,6 @@ App.directive('testHeader', function() {
 
 App.directive('keypress', ['$document',  function ($document) {
 	return  function (scope, element, attrs) {
-		$document.bind("keypress", function (event) {
-			if(event.which === 39) {
-				scope.$apply(function (){
-					scope.$eval("presentationCtrl.navImg('next')");
-				});
-				event.preventDefault();
-			} else if (event.which === 37) {
-				scope.$apply(function (){
-					scope.$eval("presentationCtrl.navImg('prev')");
-				});
-				event.preventDefault();
-			}
-		});
-	};
-}]);
-
-App.directive('keypress', ['$document',  function ($document) {
-	return  function (scope, element, attrs) {
 		$document.bind("keydown keypress", function (event) {
 			if(event.which === 39) {
 				scope.$apply(function (){
@@ -130,6 +113,10 @@ App.directive('keypress', ['$document',  function ($document) {
 					scope.$eval("presentationCtrl.navImg('prev')");
 				});
 				event.preventDefault();
+			} else if(event.which === 27){
+				window.location = "../";
+			} else {
+
 			}
 		});
 	};

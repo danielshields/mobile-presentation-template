@@ -1,4 +1,6 @@
-<?php global $globalSettings; ?>
+<?php global $globalSettings; 
+require_once("toc.php");
+?>
 <!doctype html>
 <head>
 	<meta charset="utf-8">
@@ -20,7 +22,9 @@
 					print '<li><a href="' . $displayDir . '/">' . $displayDir . '</a></li>';
 				}}
 			} else {
-				
+				foreach($toc as $tocItem) {
+					print '<li><a href="' . $tocItem[0] . '/">' . $tocItem[1] . '</a></li>';	
+				}
 			}
 			print '</ul>';
 		?>
