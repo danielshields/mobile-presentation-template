@@ -14,9 +14,9 @@
 		'resourcePath' => '../',
 		'projectToRoot' => '../../',
 		'filetype' => 'png',
-		'maxWidth' => '100%',
-		'autoTOC' => false,
-		'outdated' => array()
+		'maxWidth' => '1100px',
+		'autoTOC' => true,
+		'bgColor' => "#FFFFFF"
 	];
 
 	if(isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] !== $globalSettings->projectDirectory){
